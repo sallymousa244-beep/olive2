@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>التحدي الثاني | بستان الأمل</title>
+
+    <link rel="stylesheet" href="game2.css">
+</head>
+
+<body>
+<main class="game-page">
+
+    <header>
+        <h1>🌿 التحدي الثاني</h1>
+        <p>اكتشف أزواج الصور المتطابقة من عالم الزيتون</p>
+    </header>
+
+    <section class="game-info" id="gameInfo">
+        <span id="matches">🫒 0 / 6 أزواج</span>
+        <span id="timer">⏱️ 60 ثانية</span>
+    </section>
+
+    <section class="memory-board"
+             id="memoryBoard"
+             aria-label="بطاقات لعبة الذاكرة">
+    </section>
+
+    <p id="message" aria-live="polite">
+        اقلب بطاقتين للبحث عن الصور المتطابقة
+    </p>
+<button id="restartBtn" hidden>
+    🔄 إعادة المحاولة
+</button>
+    <section id="successBox"
+             class="success-box"
+             hidden>
+
+        <h2>🌳 رائع!</h2>
+        <p>أكملت التحدي الثاني ونمت شجرتك أكثر</p>
+
+        <div class="tree-growth" id="treeGrowth">
+    <img
+        src="olive-tree.png"
+        alt="شجرة زيتون نامية"
+        class="olive-tree-image"
+    >
+</div>
+
+        <button id="nextBtn">
+            الانتقال إلى التحدي الثالث 
+        </button>
+
+    </section>
+
+</main>
+
+<script src="game2.js"></script>
+<footer class="grove-footer">
+    <div class="footer-name">المعلمة سالي موسى العمرات BTEC IT</div><br>
+    <div>مدرسة كفرسوم الثانوية الشاملة المختلطة</div><br>
+    <div class="footer-year">2026</div>
+</footer>
+</body>
+</html>

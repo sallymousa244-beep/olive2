@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Cairo", Arial, sans-serif;
+    color: #fff;
+    background:
+        linear-gradient(
+            rgba(12, 38, 23, 0.85),
+            rgba(12, 38, 23, 0.92)
+        ),
+        url("assets/olive-grove.png")
+        center / cover fixed;
+}
+
+.game-page {
+    max-width: 850px;
+    margin: auto;
+    padding: 25px 16px 45px;
+    text-align: center;
+}
+
+h1 {
+    color: #f6d98b;
+    font-size: 32px;
+}
+
+header p {
+    color: #f5e9cd;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 25px 0;
+    font-weight: bold;
+}
+
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    border: 2px solid #d6b76b;
+    border-radius: 14px;
+    background: #315d3a;
+    cursor: pointer;
+    font-size: clamp(28px, 6vw, 52px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.memory-card:not(:disabled):hover {
+    transform: translateY(-3px);
+}
+
+.memory-card.flipped,
+.memory-card.matched {
+    background: #f4e8cb;
+    border-color: #cba55d;
+}
+
+.memory-card.matched {
+    box-shadow: 0 0 16px rgba(225, 190, 95, 0.6);
+}
+
+.memory-card:disabled {
+    cursor: default;
+}
+
+#message {
+    margin-top: 25px;
+    color: #f6d98b;
+}
+
+.success-box {
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 35px 20px;
+    border: 3px solid #d6b76b;
+    border-radius: 20px;
+    background: rgba(18, 57, 32, 0.94);
+}
+
+.success-box[hidden],
+.memory-board[hidden],
+.game-info[hidden],
+#message[hidden] {
+    display: none !important;
+}
+
+.tree-growth {
+    font-size: 110px;
+    transform: scale(0);
+    margin: 25px auto;
+}
+
+.tree-growth.animate {
+    animation: grow 2.5s ease-out forwards;
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#nextBtn {
+    padding: 14px 25px;
+    background: #d6b76b;
+    border: none;
+    border-radius: 12px;
+    color: #17351f;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .memory-board {
+        gap: 8px;
+    }
+
+    .game-info {
+        font-size: 13px;
+    }
+}
+.tree-growth {
+    width: 100%;
+    height: 290px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 20px auto;
+    transform: scale(0);
+    transform-origin: center bottom;
+}
+
+.olive-tree-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.tree-growth.animate {
+    animation: oliveTreeGrow 3s ease-out forwards;
+}
+
+@keyframes oliveTreeGrow {
+    0% {
+        transform: scale(0.08);
+        opacity: 0;
+    }
+
+    45% {
+        transform: scale(0.45);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.tree-growth {
+    height: 230px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transform-origin: center bottom;
+}
+
+.olive-tree-image {
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+#restartBtn {
+    display: block;
+    margin: 12px auto;
+    padding: 11px 26px;
+    border: 2px solid #d8ad58;
+    border-radius: 30px;
+    background: #f6d98b;
+    color: #183c2b;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#restartBtn:hover {
+    filter: brightness(1.08);
+}
+
+#restartBtn[hidden] {
+    display: none !important;
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

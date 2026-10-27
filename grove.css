@@ -1,0 +1,459 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --forest: #102b1b;
+    --forest-light: #1d4b2d;
+    --gold: #d6b76b;
+    --gold-light: #ffe6a5;
+    --wood: #573a23;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: var(--forest);
+}
+
+.grove-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.grove-scene {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: 85vh;
+    min-height: 600px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            rgba(10, 30, 15, .04),
+            rgba(10, 30, 15, .12)
+        ),
+        url("tree.jpg") center bottom / cover no-repeat;
+}
+
+.sunlight {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 30% 15%,
+        rgba(255, 224, 125, .35),
+        transparent 45%
+    );
+}
+
+/* مساحة أشجار الزوار */
+.community-trees {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* أشجار الزوار */
+.community-tree {
+    position: absolute;
+    width: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    transform: translate(-50%, -100%);
+    transform-origin: center bottom;
+    pointer-events: auto;
+    animation: treeAppear .7s ease-out both;
+}
+
+.community-tree img {
+    display: block;
+    width: 120px;
+    height: 130px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, .3));
+}
+
+.community-tree .visitor-label {
+    max-width: 150px;
+    padding: 5px 9px;
+    border: 1px solid #e0c37c;
+    border-radius: 8px;
+    background: var(--wood);
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+@keyframes treeAppear {
+    from {
+        opacity: 0;
+        scale: .5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/* مكان الشجرة الرئيسية */
+.planting-spot {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    width: min(400px, 48vw);
+    height: min(430px, 55vh);
+    transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* الشجرة الرئيسية */
+.my-tree {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: center bottom;
+    opacity: 0;
+    z-index: 2;
+}
+
+.my-tree img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+}
+
+/* حركة النمو */
+.my-tree.grow {
+    animation: growInGrove 4s ease-out forwards;
+}
+
+@keyframes growInGrove {
+    0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+
+    30% {
+        transform: translateX(-50%) scale(.25);
+        opacity: 1;
+    }
+
+    65% {
+        transform: translateX(-50%) scale(.65);
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* إبراز الشجرة عند البحث عنها */
+.my-tree.tree-highlight {
+    filter: drop-shadow(0 0 18px #ffe68a);
+}
+
+.tree-name {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 120px;
+    max-width: 220px;
+    padding: 7px 12px;
+    border: 2px solid #cba45d;
+    border-radius: 9px;
+    background: var(--wood);
+    color: var(--gold-light);
+    font-weight: bold;
+    overflow-wrap: anywhere;
+    z-index: 6;
+    visibility: hidden;
+}
+
+.tree-name.visible {
+    visibility: visible;
+}
+
+/* عداد الأشجار */
+.trees-counter {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    padding: 10px 15px;
+    border: 1px solid #e0c37c;
+    border-radius: 12px;
+    background: rgba(20, 65, 35, .92);
+    color: var(--gold-light);
+    font-weight: bold;
+}
+
+/* الرسالة والأزرار */
+.grove-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 14px;
+    pointer-events: none;
+}
+
+.grove-overlay .trees-counter,
+.grove-overlay .grove-message,
+.grove-overlay .grove-buttons {
+    pointer-events: auto;
+}
+
+.grove-overlay .trees-counter {
+    top: 15px;
+    left: 15px;
+    right: auto;
+}
+
+.grove-message {
+    max-width: min(95%, 650px);
+    margin: 0 auto 12px;
+    padding: 0px 0px;
+    border-radius: 0px;
+    background: rgba(7, 7, 7, 0.92);
+    color: var(--gold-light);
+    font-weight: bold;
+    line-height: 1.7;
+}
+
+.grove-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(16, 43, 27, .92);
+}
+
+button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    background: var(--gold);
+    color: #18351e;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.grove-buttons button {
+    min-height: 46px;
+    max-width: 100%;
+    margin: 0;
+}
+
+button:hover:not(:disabled) {
+    background: #ead18a;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* عناصر صفحات الأمنيات إن كانت تستخدم هذا الملف */
+.wish-tree {
+    position: absolute;
+    top: 12%;
+    right: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+}
+
+.wish-tree span {
+    font-size: 115px;
+}
+
+.wish-tree strong {
+    padding: 8px 15px;
+    background: #234b30;
+    border: 1px solid #e0c37c;
+    border-radius: 12px;
+    color: var(--gold-light);
+}
+
+.grove-controls,
+.wish-panel {
+    margin: 22px auto;
+    padding: 20px;
+    border-radius: 18px;
+    background: var(--forest-light);
+}
+
+.wish-panel {
+    max-width: 650px;
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 17px;
+    resize: vertical;
+}
+
+#wishMessage {
+    color: var(--gold-light);
+}
+
+/* شاشات الهواتف */
+@media (max-width: 600px) {
+    .grove-scene {
+        height: 100svh;
+        min-height: 600px;
+    }
+
+    .planting-spot {
+        bottom: 22%;
+        left: 50%;
+        width: 230px;
+        height: 270px;
+    }
+
+    .community-tree {
+        width: 76px;
+    }
+
+    .community-tree img {
+        width: 72px;
+        height: 82px;
+    }
+
+    .community-tree .visitor-label {
+        max-width: 88px;
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    .grove-overlay {
+        padding: 12px 8px;
+    }
+
+    .grove-overlay .trees-counter {
+        top: 10px;
+        left: 10px;
+        font-size: 12px;
+    }
+
+    .grove-message {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .grove-buttons {
+        gap: 7px;
+        padding: 9px;
+    }
+
+    .grove-buttons button {
+        flex: 1 1 100%;
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .wish-tree {
+        right: 3%;
+    }
+
+    .wish-tree span {
+        font-size: 75px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .community-tree {
+        animation: none;
+    }
+
+    button {
+        transition: none;
+    }
+}
+
+.community-tree.my-tree-found {
+    z-index: 50;
+    filter: drop-shadow(0 0 18px gold);
+}
+.community-tree.my-tree-found {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    position: absolute;
+    filter: drop-shadow(0 0 15px gold);
+}
+
+.community-tree.my-tree-found {
+    animation: none !important;
+    transition: none !important;
+    filter: drop-shadow(0 0 15px gold);
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

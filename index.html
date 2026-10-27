@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>بستان الأمل الرقمي</title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="hero">
+
+    <div class="overlay"></div>
+
+    <section class="welcome">
+
+      <div class="logo">🌿 بستان الأمل الرقمي</div>
+
+      <h1>ازرع زيتونتك واترك أثرًا</h1>
+
+      <p>
+        رحلتك تبدأ ببذرة
+        وتنمو بثلاثة تحديات
+        وتبقى ذكراها بأمنية
+      </p>
+
+      <button id="startBtn" type="button">
+        ابدأ رحلتي
+      </button>
+
+      <div id="registration" class="registration" hidden>
+
+        <label for="visitorName">ما اسمك؟</label>
+
+        <input
+          type="text"
+          id="visitorName"
+          maxlength="40"
+          placeholder="اكتب اسمك هنا"
+        >
+
+        <button id="plantBtn" type="button">
+          🌱 ازرع شجرتي
+        </button>
+
+        <p id="errorMessage" role="alert"></p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+  <footer class="grove-footer">
+    <div class="footer-name">المعلمة سالي موسى العمرات BTEC IT</div><br>
+    <div>مدرسة كفرسوم الثانوية الشاملة المختلطة</div><br>
+    <div class="footer-year">2026</div>
+</footer>
+
+</body>
+
+</html>

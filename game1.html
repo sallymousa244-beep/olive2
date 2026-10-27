@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>التحدي الأول | بستان الأمل</title>
+
+    <link rel="stylesheet" href="game1.css">
+</head>
+<body>
+
+<main class="game-page">
+
+    <header>
+        <h1>🫒 التحدي الأول</h1>
+        <p>ابحث عن 8 حبات زيتون مخفية بين الأوراق</p>
+    </header>
+
+    <section class="game-info" id="gameInfo">
+        <span id="counter">🫒 0 / 8</span>
+        <span id="timer">⏱️ 90 ثانية</span>
+    </section>
+<section class="game-area" id="gameArea"
+         aria-label="منطقة البحث عن الزيتون">
+
+    <div class="basket" id="basket">
+        <span class="basket-icon">🧺</span>
+        <span class="basket-count" id="basketCount">0 / 8</span>
+    </div>
+
+</section>
+
+    <p id="message" aria-live="polite">
+        اضغط على حبات الزيتون التي تكتشفها
+    </p>
+    <button id="restartBtn" hidden>
+    🔄 إعادة المحاولة
+</button>
+
+    <div id="successBox" class="success-box" hidden>
+
+    <h2>🌿 أحسنت!</h2>
+
+    <p>
+        لقد جمعت حبات الزيتون الثمانية
+        وحان وقت نمو شجرتك
+    </p>
+
+    <div class="growth-scene">
+
+        <div class="growing-tree" id="growingTree">
+            🌱
+        </div>
+
+        <div class="growth-soil"></div>
+
+    </div>
+
+    <p id="growthMessage">
+        شجرتك تستعد للنمو...
+    </p>
+
+    <button id="nextBtn" hidden>
+        الانتقال إلى التحدي الثاني
+    </button>
+
+</div>
+
+</main>
+
+<script src="game1.js"></script>
+<footer class="grove-footer">
+    <div class="footer-name">المعلمة سالي موسى العمرات BTEC IT</div><br>
+    <div>مدرسة كفرسوم الثانوية الشاملة المختلطة</div><br>
+    <div class="footer-year">2026</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>التحدي الثالث | اعتنِ بأشجار الزيتون</title>
+
+    <link rel="stylesheet" href="game3.css">
+</head>
+
+<body>
+
+<main class="game-page">
+
+    <header class="game-header">
+        <h1>🌿 اعتنِ بأشجار الزيتون</h1>
+        <p>اسحب الأداة المناسبة إلى كل شجرة لتساعدها على التعافي والنمو</p>
+        <div class="progress" id="progressText">
+            الأشجار المعتنى بها: 0 / 4
+        </div>
+    </header>
+
+    <section class="trees-grid" id="treesGrid">
+
+        <article class="tree-card" data-tool="water">
+            <h2>شجرة ذبلانة</h2>
+            <img src="tree-dry.png"
+                 alt="شجرة زيتون ذبلانة">
+            <div class="drop-zone">اسحب الأداة هنا</div>
+        </article>
+
+        <article class="tree-card" data-tool="prune">
+            <h2>شجرة تحتاج تقليم</h2>
+            <img src="tree-prune.png"
+                 alt="شجرة زيتون تحتاج تقليم">
+            <div class="drop-zone">اسحب الأداة هنا</div>
+        </article>
+
+        <article class="tree-card" data-tool="fertilize">
+            <h2>شجرة تحتاج تغذية</h2>
+            <img src="tree-fertilize.png"
+                 alt="شجرة زيتون تحتاج تسميد">
+            <div class="drop-zone">اسحب الأداة هنا</div>
+        </article>
+
+        <article class="tree-card" data-tool="harvest">
+            <h2>شجرة مثمرة</h2>
+            <img src="tree-harvest.png"
+                 alt="شجرة زيتون مثمرة">
+            <div class="drop-zone">اسحب الأداة هنا</div>
+        </article>
+
+    </section>
+
+    <section class="tools-panel">
+        <h2>🧰 أدوات العناية</h2>
+
+        <div class="tools-grid">
+            <button class="tool" data-tool="water">
+                <span>💧</span>
+                دلو السقاية
+            </button>
+            <button class="tool" data-tool="harvest">
+                <span>🧺</span>
+                سلة القطاف
+            </button>
+
+            
+
+            <button class="tool" data-tool="fertilize">
+                <span>🌱</span>
+                سماد عضوي
+            </button>
+            <button class="tool" data-tool="prune">
+                <span>✂️</span>
+                مقص التقليم
+            </button>
+
+            
+        </div>
+    </section>
+
+    <p id="message" aria-live="polite"></p>
+
+    <section id="successBox" class="success-box" hidden>
+    <h2>🌿 أحسنت! اكتملت التحديات</h2>
+
+    <div class="final-tree-scene">
+        <img
+            src="olive-tree.png"
+            alt="شجرة زيتون كبيرة ومثمرة"
+            class="final-tree-image"
+        >
+    </div>
+
+    <p id="plantMessage" class="final-tree-message">
+        حان وقت زراعة شجرتك
+    </p>
+
+    <p id="visitorTreeName"></p>
+
+    <button id="finishBtn">
+        🌳 الانتقال إلى البستان
+    </button>
+</section>
+</main>
+
+<script src="game3.js"></script>
+<footer class="grove-footer">
+    <div class="footer-name">المعلمة سالي موسى العمرات BTEC IT</div><br>
+    <div>مدرسة كفرسوم الثانوية الشاملة المختلطة</div><br>
+    <div class="footer-year">2026</div>
+</footer>
+</body>
+</html>

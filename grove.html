@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#102b1b"
+    >
+
+    <title>بستان الأمل الرقمي</title>
+
+    <link rel="stylesheet" href="grove.css">
+</head>
+
+<body>
+
+    <main class="grove-page">
+
+        <section
+            class="grove-scene"
+            id="groveScene"
+            aria-label="بستان الأمل الرقمي"
+>
+<div
+    id="welcomeMessage"  class="grove-message" hidden >
+   
+</div>
+            <!-- إضاءة البستان -->
+            <div class="sunlight" aria-hidden="true"></div>
+
+            <!-- أشجار الزوار المحفوظة -->
+            <div
+                class="community-trees"
+                id="communityTrees"
+                aria-label="أشجار زوار البستان"
+            ></div>
+
+            <!-- مكان شجرتي وحركة نموها -->
+            <div class="planting-spot">
+
+                <div class="my-tree" id="myTree">
+                    <img
+                        src="olive-tree.png"
+                        alt="شجرة الزيتون الخاصة بك"
+                        draggable="false"
+                    >
+                </div>
+
+                <div
+                    class="tree-name"
+                    id="treeName"
+                    aria-live="polite"
+                ></div>
+
+            </div>
+
+            <!-- الرسائل والأزرار -->
+            <div class="grove-overlay">
+
+                <div
+                    class="trees-counter"
+                    id="treesCounter"
+                    aria-live="polite"
+                >
+                    🌳 عدد أشجار الأمل: 0
+                </div>
+
+                <div
+                    class="grove-message"
+                    id="plantingMessage"
+                    role="status"
+                    aria-live="polite"
+                >
+                    
+                </div>
+
+                <div class="grove-buttons">
+
+                    <button
+                        id="plantTreeBtn"
+                        type="button"
+                        disabled
+                    >
+                        🌿 ازرع شجرتي الآن
+                    </button>
+
+                
+
+                    <button
+                        id="wishBtn"
+                        type="button"
+                        hidden
+                    >
+                        ✨ اكتب أمنية على شجرة الأمنيات
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script
+        type="module"
+        src="grove.js"
+    ></script>
+<footer class="grove-footer">
+    <div class="footer-name">المعلمة سالي موسى العمرات BTEC IT</div><br>
+    <div>مدرسة كفرسوم الثانوية الشاملة المختلطة</div><br>
+    <div class="footer-year">2026</div>
+</footer>
+</body>
+</html>

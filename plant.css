@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cairo", Tahoma, sans-serif;
+    color: #fff;
+}
+
+.plant-scene {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            rgba(12, 31, 19, 0.35),
+            rgba(8, 27, 15, 0.75)
+        ),
+        url("assets/olive-grove.png")
+        center / cover no-repeat;
+}
+
+.content {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+h1 {
+    color: #f6d98b;
+    font-size: clamp(28px, 5vw, 42px);
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.garden {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.seed {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 55px;
+    z-index: 3;
+}
+
+.seed.falling {
+    animation: seedFall 2s ease-in forwards;
+}
+
+@keyframes seedFall {
+    0% {
+        top: 20px;
+        opacity: 1;
+    }
+
+    75% {
+        top: 205px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 235px;
+        opacity: 0;
+    }
+}
+
+.soil {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+
+    background: linear-gradient(
+        #78502c,
+        #382516
+    );
+
+    border-radius: 50% 50% 0 0;
+    border-top: 10px solid #9c7146;
+    z-index: 2;
+}
+
+.sprout {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    font-size: 80px;
+
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom center;
+    z-index: 3;
+}
+
+.sprout.growing {
+    animation: growSprout 2.5s ease-out forwards;
+}
+
+@keyframes growSprout {
+    from {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+button {
+    padding: 14px 32px;
+    margin: 8px;
+    border: none;
+    border-radius: 40px;
+
+    background: linear-gradient(
+        135deg,
+        #f6d98b,
+        #d8ad58
+    );
+
+    color: #183c2b;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .seed.falling,
+    .sprout.growing {
+        animation-duration: 0.01ms;
+    }
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

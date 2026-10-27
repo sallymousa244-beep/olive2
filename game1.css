@@ -1,0 +1,461 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Cairo", Tahoma, sans-serif;
+    background: #142d20;
+    color: #fff8e8;
+}
+
+.game-page {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0 auto;
+    padding: 8px 3vw;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    overflow: auto;
+}
+
+header {
+    flex-shrink: 0;
+}
+
+h1 {
+    color: #f6d98b;
+    font-size: clamp(20px, 2.5vw, 30px);
+    margin: 0 0 3px;
+}
+
+header p {
+    margin: 0;
+    font-size: clamp(12px, 1.3vw, 16px);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    flex-shrink: 0;
+}
+
+.game-info span {
+    background: #28513a;
+    border: 1px solid #d8ad58;
+    border-radius: 30px;
+    padding: 7px 16px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* الصورة تملأ المساحة المتاحة */
+
+.game-area {
+    position: relative;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+
+    overflow: hidden;
+    border-radius: 18px;
+    border: 3px solid #d8ad58;
+
+    background-color: #273b27;
+    background-image: url("olive-ground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.game-area[hidden],
+.game-info[hidden] {
+    display: none !important;
+}
+
+/* حبات الزيتون */
+
+.olive {
+    position: absolute;
+    width: clamp(22px, 3vw, 30px);
+    aspect-ratio: 1;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    place-items: center;
+    touch-action: manipulation;
+    z-index: 2;
+}
+
+.olive::before {
+    content: "";
+    display: block;
+    width: 55%;
+    height: 80%;
+    border-radius: 48% 48% 45% 45%;
+    transform: rotate(-25deg);
+
+    background: radial-gradient(
+        ellipse at 30% 25%,
+        #a3b45a 0%,
+        #697b2f 55%,
+        #34431b 100%
+    );
+
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.olive:nth-child(even)::before {
+    background: radial-gradient(
+        ellipse at 30% 25%,
+        #63556e 0%,
+        #34273e 60%,
+        #17131c 100%
+    ); 
+}
+
+.olive.found {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* السلة والعداد */
+
+.basket {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 6px 12px;
+
+    background: rgba(20, 48, 28, 0.94);
+    border: 2px solid #d8ad58;
+    border-radius: 14px;
+
+    color: #fff5df;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.basket-icon {
+    font-size: 29px;
+    line-height: 1;
+}
+
+.basket-count {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* حركة الزيتونة إلى السلة */
+
+.flying-olive {
+    position: fixed;
+    width: 18px;
+    height: 26px;
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+
+    background: radial-gradient(
+        ellipse at 30% 25%,
+        #a6bb55,
+        #61762b 60%,
+        #283b16
+    );
+
+    box-shadow: 0 3px 8px #0005;
+
+    transition:
+        left 0.65s ease-in,
+        top 0.65s ease-in,
+        transform 0.65s ease-in,
+        opacity 0.65s ease-in;
+}
+
+.flying-olive.dark {
+    background: radial-gradient(
+        ellipse at 30% 25%,
+        #776383,
+        #3a2c45 60%,
+        #1d1724
+    );
+}
+
+.basket.bump {
+    animation: basketBump 0.35s ease;
+}
+
+@keyframes basketBump {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* الرسالة وزر إعادة المحاولة */
+
+#message {
+    flex-shrink: 0;
+    margin: 7px 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#restartBtn,
+#nextBtn {
+    flex-shrink: 0;
+    margin: 8px auto;
+    padding: 11px 26px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #f6d98b;
+    color: #183c2b;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#restartBtn:hover,
+#nextBtn:hover {
+    filter: brightness(1.07);
+}
+
+#restartBtn[hidden],
+#nextBtn[hidden] {
+    display: none !important;
+}
+
+/* شاشة النجاح */
+
+.success-box {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    margin-top: 0;
+    padding: 22px 18px;
+
+    background:
+        linear-gradient(
+            rgba(17, 49, 29, 0.80),
+            rgba(9, 34, 20, 0.92)
+        ),
+        url("assets/olive-grove.png") center / cover no-repeat;
+
+    border: 3px solid #d8ad58;
+    border-radius: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-box[hidden] {
+    display: none !important;
+}
+
+.success-box h2 {
+    color: #f6d98b;
+    font-size: 30px;
+}
+
+.growth-scene {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 180px;
+    margin: 12px auto;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.growing-tree {
+    position: relative;
+    z-index: 2;
+    font-size: 100px;
+    transform: scale(0);
+    transform-origin: bottom center;
+}
+
+.growing-tree.animate {
+    animation: treeGrowth 2.5s ease-out forwards;
+}
+
+.growth-soil {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    border-radius: 50% 50% 0 0;
+
+    background: linear-gradient(#a07748, #49301d);
+}
+
+@keyframes treeGrowth {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(0.55);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-page {
+        padding: 7px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+
+    header p {
+        font-size: 12px;
+    }
+
+    .game-info {
+        margin: 7px 0;
+        gap: 8px;
+    }
+
+    .game-info span {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+
+    .game-area {
+        border-radius: 13px;
+    }
+
+    .olive {
+        width: 30px;
+    }
+
+    .basket {
+        right: 7px;
+        bottom: 7px;
+        padding: 5px 8px;
+        gap: 5px;
+    }
+
+    .basket-icon {
+        font-size: 24px;
+    }
+
+    .basket-count {
+        font-size: 12px;
+    }
+
+    #message {
+        font-size: 12px;
+    }
+
+    .success-box {
+        padding: 16px 10px;
+    }
+
+    .success-box h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-height: 500px) and (min-width: 601px) {
+    .game-page {
+        padding: 4px 2vw;
+    }
+
+    h1 {
+        font-size: 19px;
+    }
+
+    header p {
+        font-size: 11px;
+    }
+
+    .game-info {
+        margin: 4px 0;
+    }
+
+    .game-info span {
+        padding: 4px 12px;
+    }
+
+    #message {
+        margin: 4px 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .growing-tree.animate {
+        animation-duration: 0.01ms;
+    }
+
+    .flying-olive {
+        transition-duration: 0.01ms;
+    }
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

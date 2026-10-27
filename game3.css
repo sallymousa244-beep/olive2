@@ -1,0 +1,465 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background:
+        linear-gradient(rgba(10, 35, 20, .85),
+                        rgba(10, 35, 20, .92)),
+        url("assets/olive-grove.png") center / cover fixed;
+}
+
+.game-page {
+    max-width: 1250px;
+    margin: auto;
+    padding: 25px 18px 50px;
+    text-align: center;
+}
+
+.game-header h1 {
+    color: #f6d98b;
+    font-size: clamp(26px, 4vw, 42px);
+}
+
+.game-header p {
+    color: #f6edda;
+}
+
+.progress {
+    display: inline-block;
+    margin: 15px auto 25px;
+    padding: 12px 24px;
+    background: #28543a;
+    border: 1px solid #d6b76b;
+    border-radius: 30px;
+}
+
+.trees-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.tree-card {
+    min-width: 0;
+    padding: 15px;
+    border: 2px solid #d6b76b;
+    border-radius: 18px;
+    background: rgba(20, 59, 34, .86);
+    transition: .3s;
+}
+
+.tree-card h2 {
+    min-height: 48px;
+    font-size: 18px;
+    color: #f6d98b;
+}
+
+.tree-card img {
+    width: 100%;
+    height: 235px;
+    object-fit: contain;
+}
+
+.drop-zone {
+    margin-top: 12px;
+    padding: 16px 8px;
+    border: 2px dashed #d6b76b;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, .25);
+}
+
+.tree-card.drag-over {
+    border-color: #fff;
+    transform: translateY(-5px);
+}
+
+.tree-card.completed {
+    border-color: #8ee4a1;
+    background: rgba(28, 104, 55, .92);
+}
+
+.tree-card.completed .drop-zone {
+    border-style: solid;
+    border-color: #8ee4a1;
+}
+
+.tools-panel {
+    margin-top: 28px;
+    padding: 18px;
+    border: 2px solid #b99450;
+    border-radius: 18px;
+    background: rgba(35, 27, 15, .78);
+}
+
+.tools-panel h2 {
+    color: #f6d98b;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.tool {
+    padding: 18px 8px;
+    border: 1px solid #d6b76b;
+    border-radius: 12px;
+    background: #31573a;
+    color: #fff;
+    font-size: 16px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.tool span {
+    display: block;
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.tool.selected {
+    outline: 3px solid #f6d98b;
+}
+
+.tool.used {
+    opacity: .45;
+    cursor: default;
+}
+
+.drag-ghost {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    border-radius: 14px;
+    background: #31573a;
+    border: 2px solid #f6d98b;
+    font-size: 38px;
+}
+
+#message {
+    min-height: 30px;
+    color: #f6d98b;
+    font-size: 18px;
+}
+
+.success-box {
+    margin: 25px auto;
+    padding: 25px;
+    border: 2px solid #d6b76b;
+    border-radius: 18px;
+    background: #1c5532;
+}
+
+.success-box[hidden] {
+    display: none !important;
+}
+
+#finishBtn {
+    padding: 15px 25px;
+    border: 0;
+    border-radius: 12px;
+    background: #d6b76b;
+    color: #17351f;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 850px) {
+    .trees-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .tree-card {
+        padding: 8px;
+    }
+
+    .tree-card h2 {
+        font-size: 14px;
+    }
+
+    .tree-card img {
+        height: 160px;
+    }
+
+    .tool {
+        font-size: 13px;
+    }
+}
+.tree-card.completed img {
+    animation: treeRecover 1.2s ease-out;
+}
+
+@keyframes treeRecover {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* إخفاء عناصر اللعبة بعد النجاح */
+.trees-grid[hidden],
+.tools-panel[hidden],
+.game-header[hidden],
+#message[hidden],
+#finishBtn[hidden] {
+    display: none !important;
+}
+
+/* مشهد نمو الشجرة */
+.planting-scene {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 330px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            rgba(20, 65, 35, 0.1),
+            rgba(20, 65, 35, 0.35)
+        ),
+        url("assets/olive-grove.png") center / cover;
+}
+
+.plant-stage {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+#plantEmoji {
+    display: block;
+    font-size: 55px;
+    transform-origin: center bottom;
+    transition: transform 0.8s, opacity 0.8s;
+}
+
+#plantEmoji.grow {
+    animation: plantGrow 1.1s ease-out;
+}
+
+@keyframes plantGrow {
+    from {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.plant-soil {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 55px;
+    background: #63401f;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.plant-sparkles {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#visitorTreeName {
+    color: #f6d98b;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#finishBtn {
+    margin-top: 20px;
+}
+/* تحسين عرض التحدي الثالث على الهاتف */
+@media (max-width: 600px) {
+    .game-page {
+        padding: 12px 6px 25px;
+    }
+
+    .game-header h1 {
+        font-size: 22px;
+    }
+
+    .game-header p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .progress {
+        margin: 8px auto 12px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    /* الأشجار الأربع بجانب بعضها */
+    .trees-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 4px;
+    }
+
+    .tree-card {
+        padding: 5px 2px;
+        border-width: 1px;
+        border-radius: 9px;
+        min-width: 0;
+    }
+
+    .tree-card h2 {
+        min-height: 48px;
+        margin: 4px 0;
+        font-size: 10px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .tree-card img {
+        display: block;
+        width: 100%;
+        height: 75px;
+        object-fit: contain;
+    }
+
+    .drop-zone {
+        margin-top: 6px;
+        padding: 7px 2px;
+        border-width: 1px;
+        border-radius: 6px;
+        font-size: 9px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    /* الأدوات بجانب بعضها في صفين */
+    .tools-panel {
+        margin-top: 14px;
+        padding: 10px 6px;
+        border-radius: 12px;
+    }
+
+    .tools-panel h2 {
+        margin: 4px 0 10px;
+        font-size: 17px;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .tool {
+        min-width: 0;
+        padding: 8px 3px;
+        border-radius: 9px;
+        font-size: 12px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .tool span {
+        font-size: 27px;
+        margin-bottom: 4px;
+    }
+
+    #message {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+.final-tree-scene {
+    width: 100%;
+    max-width: 520px;
+    height: clamp(220px, 42vh, 380px);
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+    background:
+        linear-gradient(rgba(20, 65, 35, 0.1),
+                        rgba(20, 65, 35, 0.2)),
+        url("assets/olive-grove.png") center / cover;
+}
+
+.final-tree-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.final-tree-message {
+    color: #f6d98b;
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+#finishBtn {
+    margin-top: 12px;
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

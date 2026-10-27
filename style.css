@@ -1,0 +1,299 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+    color: #fff;
+}
+
+.hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+
+    background-image: url("olive-grove.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.30);
+}
+
+.welcome {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 25px;
+    animation: fadeUp 1.2s ease;
+}
+
+.logo {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50px;
+    background: rgba(12, 45, 25, 0.45);
+    backdrop-filter: blur(8px);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 58px);
+    font-weight: 800;
+    color: #fff3cf;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.welcome > p {
+    font-size: 18px;
+    line-height: 2;
+    margin-bottom: 30px;
+    color: #fff8e8;
+}
+
+button {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 38px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+#startBtn,
+#plantBtn {
+    color: #173b25;
+    background: linear-gradient(
+        135deg,
+        #f8df91,
+        #d8a84d
+    );
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+.registration {
+    margin-top: 25px;
+    padding: 25px;
+    background: rgba(10, 40, 25, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+    backdrop-filter: blur(12px);
+}
+
+.registration[hidden],
+button[hidden] {
+    display: none;
+}
+
+.registration label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.registration input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 18px;
+    border: 1px solid #d5c49b;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 17px;
+    text-align: center;
+    outline: none;
+}
+
+#errorMessage {
+    margin-top: 12px;
+    color: #ffcece;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .welcome {
+        padding: 25px 10px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .welcome > p {
+        font-size: 16px;
+    }
+
+    .hero {
+        background-position: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .welcome {
+        animation: none;
+    }
+}
+/* العنوان الرئيسي */
+h1 {
+    color: #F6D98B;
+    text-shadow:
+        2px 3px 8px rgba(0, 0, 0, 0.85),
+        0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+/* العبارة الترحيبية */
+.welcome > p {
+    color: #FFF5DF;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* شعار المشروع */
+.logo {
+    color: #F6D98B;
+    background: rgba(24, 60, 43, 0.85);
+    border: 1px solid #D8AD58;
+}
+
+/* عنوان خانة الاسم */
+.registration label {
+    color: #F6D98B;
+}
+
+/* زر الزراعة */
+#startBtn,
+#plantBtn {
+    background: linear-gradient(135deg, #F6D98B, #D8AD58);
+    color: #183C2B;
+}
+
+/* رسالة التنبيه */
+#errorMessage {
+    color: #FFE0A0;
+}
+/* تحسين حجم العنوان */
+.welcome h1 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.4;
+    max-width: 800px;
+    margin: 0 auto 22px;
+}
+
+/* حركة ظهور العناصر */
+.logo {
+    animation: appearDown 0.8s ease both;
+}
+
+.welcome h1 {
+    animation: appearUp 1s ease 0.2s both;
+}
+
+.welcome > p {
+    animation: appearUp 1s ease 0.4s both;
+}
+
+#startBtn {
+    animation: appearUp 1s ease 0.6s both;
+}
+
+/* تأثير الزر عند المرور عليه */
+#startBtn:hover,
+#plantBtn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(246, 217, 139, 0.45);
+}
+
+@keyframes appearUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appearDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* مراعاة الأجهزة التي تقلل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    .logo,
+    .welcome h1,
+    .welcome > p,
+    #startBtn {
+        animation: none;
+    }
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}

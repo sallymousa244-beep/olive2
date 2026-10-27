@@ -1,0 +1,728 @@
+/* ===================================
+   شجرة الأمنيات للأردن
+   تصميم مستوحى من الصورة المرجعية
+=================================== */
+
+:root {
+    --green-dark: #123522;
+    --green: #1d4a30;
+    --gold: #e9c775;
+    --paper: #fff7e4;
+    --paper-text: #34452e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    background: var(--green-dark);
+    color: #fff8e9;
+}
+
+.ishes-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* المشهد الطبيعي */
+
+.wishes-scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+    overflow: hidden;
+    isolation: isolate;
+
+    background-color: #526d48;
+    background-image:
+        linear-gradient(
+            rgba(12, 35, 20, 0.02),
+            rgba(12, 35, 20, 0.06)
+        ),
+        url("wish-tree.jpg");
+
+    background-position: center, center;
+    background-size: cover, 100% 100%;
+    background-repeat: no-repeat, no-repeat;
+}
+
+/* الشجرة وطبقة الأمنيات */
+
+.wishes-tree {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.wishes-tree > img {
+    display: none;
+}
+
+.wish-leaves {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* العنوان أعلى اليسار */
+
+.wishes-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+
+    width: auto;
+    max-width: 60%;
+    padding: 16px 30px 14px;
+
+    background: rgba(18, 53, 34, 0.92);
+    border-radius: 0 0 12px 0;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+.wishes-header h1 {
+    margin: 0 0 4px;
+    color: var(--gold);
+    font-size: clamp(20px, 2.4vw, 30px);
+    line-height: 1.5;
+}
+
+.wishes-header p {
+    margin: 0;
+    color: #fff5df;
+    font-size: clamp(11px, 1.1vw, 14px);
+    line-height: 1.8;
+}
+
+/* صندوق كتابة الأمنية */
+
+.wish-form {
+    position: absolute;
+    top: auto;
+    right: 3%;
+    bottom: 65px;
+    z-index: 12;
+
+    width: 200px;
+    max-width: 22%;
+    padding: 14px 13px;
+
+    transform: none;
+
+    background: linear-gradient(
+        145deg,
+        rgba(24, 69, 43, 0.97),
+        rgba(13, 46, 29, 0.98)
+    );
+
+    border: 2px solid #e9c775;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.28);
+}
+
+.wish-form h2 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#wishInput {
+    min-height: 75px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+#saveWishBtn {
+    margin-top: 9px;
+    padding: 10px 7px;
+    font-size: 12px;
+}
+
+#wishMessage {
+    min-height: 18px;
+    margin-top: 7px;
+    font-size: 11px;
+}
+
+.wish-form::after {
+    margin-top: 7px;
+    padding-top: 8px;
+    font-size: 11px;
+}
+
+.wish-form h2 {
+    margin: 0 0 10px;
+    font-size:17px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.wish-form h2::before {
+    content: "🌿 ";
+}
+
+#wishInput {
+    display: block;
+    width: 100%;
+    min-height: 103px;
+    padding: 13px;
+
+    resize: vertical;
+    outline: none;
+
+    background: #fffaf0;
+    color: #34452e;
+
+    border: 1px solid #e6d7b3;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: right;
+
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+#wishInput::placeholder {
+    color: #898779;
+}
+
+#wishInput:focus {
+    border-color: #e9c775;
+    box-shadow: 0 0 0 3px rgba(233, 199, 117, 0.2);
+}
+
+/* زر تعليق الأمنية */
+
+#saveWishBtn {
+    width: 100%;
+    margin-top: 13px;
+    padding: 13px 9px;
+
+    background: linear-gradient(135deg, #f5dc91, #dfb957);
+    color: #26412b;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+
+    transition: transform 0.2s, filter 0.2s;
+}
+
+#saveWishBtn::before {
+    content: "🍃 ";
+}
+
+#saveWishBtn:hover {
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+}
+
+#saveWishBtn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+}
+
+/* رسالة الحفظ */
+
+#wishMessage {
+    min-height: 23px;
+    margin: 12px 0 0;
+
+    color: #f3d995;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* العبارة أسفل الصندوق */
+
+.wish-form::after {
+    content: "♥  كل أمنية تزرع بذرة أمل";
+    display: block;
+
+    margin-top: 12px;
+    padding-top: 13px;
+
+    color: #fff1cf;
+    border-top: 1px solid rgba(233, 199, 117, 0.25);
+
+    text-align: center;
+    font-size: 12px;
+}
+
+/* قصاصات الأمنيات */
+
+.wish-leaf {
+    position: absolute;
+
+    width: 72px;
+    min-height: 72px;
+    padding: 13px 6px 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        145deg,
+        #fffbed,
+        #f0dfb8
+    );
+
+    border: 1px solid rgba(133, 100, 48, 0.45);
+    border-radius: 2px 2px 7px 2px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.28),
+        inset 0 0 5px rgba(255, 255, 255, 0.65);
+
+    transform: rotate(var(--note-rotation, -2deg));
+    transform-origin: top center;
+
+    animation: noteAppear 0.45s ease both;
+
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* الشريط اللاصق أعلى الورقة */
+
+.wish-note-tape {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+
+    width: 27px;
+    height: 9px;
+
+    transform: translateX(-50%) rotate(-3deg);
+
+    background: rgba(218, 190, 126, 0.92);
+    border: 1px solid rgba(151, 116, 62, 0.22);
+    border-radius: 2px;
+}
+
+.leaf-text {
+    color: var(--paper-text);
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.55;
+    white-space: pre-wrap;
+}
+
+/* ظهور الورقة */
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        translate: 0 8px;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* العودة إلى البستان */
+
+.back-btn {
+    position: absolute;
+    bottom: 17px;
+    right: 20px;
+    z-index: 20;
+
+    display: inline-block;
+    padding: 10px 17px;
+
+    color: #fff5df;
+    background: rgba(18, 53, 34, 0.94);
+
+    border: 1px solid rgba(233, 199, 117, 0.65);
+    border-radius: 25px;
+
+    text-decoration: none;
+    font-size: 13px;
+
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background: #315d3c;
+}
+
+/* الأجهزة اللوحية */
+
+@media (min-width: 601px) and (max-width: 950px) {
+    .wishes-header {
+        padding: 12px 18px;
+    }
+
+    .wishes-header h1 {
+        font-size: 21px;
+    }
+
+    .wishes-header p {
+        font-size: 11px;
+    }
+
+    .wish-form {
+        right: 2%;
+        width: 250px;
+        max-width: 29%;
+        padding: 17px 13px;
+    }
+
+    .wish-form h2 {
+        font-size: 17px;
+    }
+
+    .wish-leaf {
+        width: 61px;
+        min-height: 59px;
+        padding: 11px 4px 5px;
+    }
+
+    .leaf-text {
+        font-size: 9px;
+    }
+}
+
+/* الهواتف */
+
+@media (max-width: 600px) {
+    .wishes-page {
+        overflow: visible;
+    }
+
+    .wishes-header {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        width: 100%;
+        max-width: none;
+        padding: 12px;
+
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .wishes-header h1 {
+        font-size: 22px;
+    }
+
+    .wishes-header p {
+        font-size: 12px;
+    }
+
+    .wishes-scene {
+        height: 72vh;
+        min-height: 470px;
+        max-height: 650px;
+
+        background-position: center, center;
+        background-size: cover, cover;
+    }
+
+    .wish-leaf {
+        width: 49px;
+        min-height: 48px;
+        padding: 9px 3px 4px;
+    }
+
+    .wish-note-tape {
+        width: 20px;
+        height: 7px;
+    }
+
+    .leaf-text {
+        font-size: 7px;
+        line-height: 1.4;
+    }
+
+    .wish-form {
+        position: relative;
+        top: auto;
+        right: auto;
+
+        width: calc(100% - 28px);
+        max-width: 420px;
+        margin: 18px auto;
+
+        padding: 20px 16px;
+        transform: none;
+    }
+
+    .wish-form h2 {
+        font-size: 19px;
+    }
+
+    #wishInput {
+        min-height: 95px;
+    }
+
+    .back-btn {
+        position: relative;
+        right: auto;
+        bottom: auto;
+
+        display: block;
+        width: fit-content;
+        margin: 15px auto 22px;
+    }
+}
+
+/* تقليل الحركة */
+
+@media (prefers-reduced-motion: reduce) {
+    .wish-leaf {
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+.back-btn {
+    position: absolute;
+    right: 2%;
+    bottom: 18px;
+    z-index: 20;
+
+    padding: 11px 20px;
+
+    color: #fff5df;
+    background: linear-gradient(135deg, #214d32, #123522);
+
+    border: 1px solid #e9c775;
+    border-radius: 25px;
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #376342;
+    transform: translateY(-2px);
+}
+/* بوكس شجرة الأمنيات: أعرض وأقصر */
+.wish-panel {
+    width: min(94%, 850px);
+    max-width: 850px;
+    margin: 12px auto;
+    padding: 12px 20px;
+    border-radius: 16px;
+}
+
+/* ورقة كتابة الأمنية */
+#wishText,
+.wish-panel textarea,
+textarea {
+    display: block;
+    width: 100%;
+    height: 85px;
+    min-height: 85px;
+    max-height: 85px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+}
+
+/* عنوان البوكس */
+.wish-panel h1,
+.wish-panel h2,
+.wish-panel h3 {
+    margin: 4px 0 8px;
+}
+
+/* ترتيب الأزرار */
+.wish-panel button {
+    margin: 6px 4px 0;
+    padding: 9px 18px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .wish-panel {
+        width: 96%;
+        padding: 10px 12px;
+        margin: 8px auto;
+    }
+
+    #wishText,
+    .wish-panel textarea,
+    textarea {
+        height: 70px;
+        min-height: 70px;
+        max-height: 70px;
+        font-size: 13px;
+    }
+}
+/* ===== التعديل النهائي لصندوق شجرة الأمنيات ===== */
+
+.wish-form {
+    width: 340px !important;
+    max-width: 34% !important;
+    padding: 10px 12px !important;
+    right: 2% !important;
+    bottom: 55px !important;
+    border-radius: 14px;
+}
+
+/* عنوان الصندوق */
+.wish-form h2 {
+    margin: 0 0 6px !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+}
+
+/* ورقة كتابة الأمنية: أصغر وأقصر */
+#wishInput {
+    width: 100%;
+    height: 65px !important;
+    min-height: 65px !important;
+    max-height: 65px !important;
+    padding: 7px 9px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    resize: none !important;
+}
+
+/* زر حفظ الأمنية */
+#saveWishBtn {
+    margin-top: 7px !important;
+    padding: 8px 7px !important;
+    font-size: 12px !important;
+}
+
+/* رسالة الحفظ */
+#wishMessage {
+    min-height: 14px;
+    margin-top: 5px !important;
+    font-size: 10px !important;
+}
+
+/* العبارة أسفل الصندوق */
+.wish-form::after {
+    margin-top: 6px !important;
+    padding-top: 6px !important;
+    font-size: 10px !important;
+}
+
+@media (max-width: 600px) {
+    .wish-form {
+        position: absolute !important;
+        right: 2% !important;
+        bottom: 50px !important;
+        top: auto !important;
+        width: 43% !important;
+        max-width: 240px !important;
+        margin: 0 !important;
+        padding: 8px !important;
+    }
+
+    .wish-form h2 {
+        font-size: 12px !important;
+        margin-bottom: 5px !important;
+    }
+
+    #wishInput {
+        height: 52px !important;
+        min-height: 52px !important;
+        max-height: 52px !important;
+        padding: 6px !important;
+        font-size: 11px !important;
+    }
+
+    #saveWishBtn {
+        margin-top: 5px !important;
+        padding: 7px 4px !important;
+        font-size: 10px !important;
+    }
+
+    #wishMessage {
+        font-size: 9px !important;
+        margin-top: 4px !important;
+    }
+
+    .wish-form::after {
+        margin-top: 4px !important;
+        padding-top: 4px !important;
+        font-size: 9px !important;
+    }
+}
+#endJourneyBtn{
+    position: fixed !important;
+    left: 15px !important;
+    right: auto !important;
+    bottom: 20px !important;
+    max-width: calc(100vw - 30px) !important;
+    box-sizing: border-box !important;
+    z-index: 9999 !important;
+}
+
+@media (max-width: 600px) {
+    #journeyBtn {
+        left: 10px !important;
+        bottom: 12px !important;
+        max-width: calc(100vw - 20px) !important;
+        font-size: 12px !important;
+        padding: 10px 12px !important;
+    };
+}
+.grove-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px 12px;
+    text-align: center;
+    background: #173f2b;
+    color: #e4eddf;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 2;
+    border-top: 2px solid #a9c58a;
+}
+
+.grove-footer .footer-name {
+    color: #d7edb9;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.grove-footer .footer-year {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b8cbb5;
+}
