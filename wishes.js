@@ -132,16 +132,8 @@ saveWishBtn.addEventListener("click", async () => {
 });
 
 loadWishes();
-const endJourneyBtn = document.getElementById("endJourneyBtn");
 
-if (endJourneyBtn) {
-    endJourneyBtn.addEventListener("click", () => {
-        const leave = confirm(
-            "🌿 انتهت رحلتك في شجرة الأمنيات\nشكرًا لأنك زرعت أمنية للأردن "
-        );
 
-        if (leave) {
-            window.close();
-        }
+        
     });
 }
