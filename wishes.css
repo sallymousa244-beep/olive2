@@ -702,4 +702,8 @@ textarea {
         padding: 10px 12px !important;
     };
 }
-
+footer,
+.footer,
+.page-footer {
+    display: none !important;
+}
