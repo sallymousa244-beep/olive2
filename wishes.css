@@ -759,3 +759,38 @@ textarea {
         text-align: center;
     }
 }
+/* الفوتر الصغير لشجرة الأمنيات */
+.wishes-footer {
+    position: relative;
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    background: #123522;
+    color: #fff5df;
+    border-top: 1px solid rgba(233, 199, 117, 0.45);
+
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.wishes-footer .footer-divider {
+    color: #e9c775;
+}
+
+@media (max-width: 600px) {
+    .wishes-footer {
+        min-height: 34px;
+        padding: 7px 5px;
+        gap: 5px;
+        font-size: 10px;
+    }
+}
